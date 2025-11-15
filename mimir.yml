@@ -1,0 +1,60 @@
+# Basic server configuration
+server:
+  http_listen_port: 9009
+  grpc_listen_port: 9095
+  log_level: info
+
+# Common configuration
+common:
+  storage:
+    backend: filesystem
+    filesystem:
+      dir: /data
+
+# API configuration
+api:
+  prometheus_http_prefix: /prometheus
+  alertmanager_http_prefix: /alertmanager
+
+# Distributor configuration - handles incoming metrics
+distributor:
+  ring:
+    kvstore:
+      store: memberlist
+
+# Ingester configuration - stores metrics in memory/disk
+ingester:
+  ring:
+    kvstore:
+      store: memberlist
+    replication_factor: 1
+
+# Query frontend configuration
+frontend:
+  scheduler_address: ""
+
+# Querier configuration
+# querier:
+#   frontend_address: ""
+
+# Store gateway configuration
+store_gateway:
+  sharding_ring:
+    kvstore:
+      store: memberlist
+    replication_factor: 1
+
+# Compactor configuration
+compactor:
+  data_dir: /tmp/compactor
+  sharding_ring:
+    kvstore:
+      store: memberlist
+
+# Memberlist configuration for service discovery
+memberlist:
+  advertise_port: 7946
+  bind_port: 7946
+
+# Target configuration - run specific components (excluding ruler)
+target: distributor,ingester,querier,store-gateway,compactor

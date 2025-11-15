@@ -1,0 +1,11 @@
+FROM docker.io/library/mysql:8.0.34
+
+# Switch to root user to install packages
+USER root
+
+# Install less and vi using microdnf (Oracle Linux uses microdnf)
+RUN microdnf install -y less vim-minimal && \
+      microdnf clean all
+
+# Switch back to mysql user
+USER mysql

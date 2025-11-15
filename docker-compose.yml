@@ -1,0 +1,105 @@
+name: "mlrd"
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
+    container_name: mysql-8.0.34
+    command:
+    environment:
+      - "MYSQL_ROOT_PASSWORD=test"
+    ports:
+      - "33800:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mycfg/my.cnf:/etc/my.cnf
+      - ./mycfg/fix-root-auth.sh:/opt/fix-root-auth.sh
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uroot", "-ptest"]
+      interval: 60s
+      timeout: 1s
+      retries: 1
+    networks:
+      - monitoring
+
+  dynamodb-local:
+    image: docker.io/amazon/dynamodb-local:latest
+    container_name: dynamodb-local
+    command: ["-jar", "DynamoDBLocal.jar", "-inMemory", "-sharedDb", "-disableTelemetry"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - dynamodb_data:/home/dynamodblocal/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "http://127.0.0.1:8000"]
+      interval: 60s
+      timeout: 1s
+      retries: 1
+    networks:
+      - monitoring
+
+  mimir:
+    image: docker.io/grafana/mimir:latest
+    container_name: mimir
+    environment:
+      - GOMAXPROCS=1
+    ports:
+      - "9009:9009"
+    volumes:
+      - ./mimir.yml:/etc/mimir/mimir.yml
+      - mimir_data:/data
+    command:
+      - -config.file=/etc/mimir/mimir.yml
+      - -auth.multitenancy-enabled=false
+    networks:
+      - monitoring
+
+  otel-collector:
+    image: docker.io/otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    environment:
+      - GOMAXPROCS=1
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "8888:8888"   # Prometheus metrics
+      - "8889:8889"   # Prometheus exporter metrics
+    volumes:
+      - ./otel-collector.yml:/etc/otel-collector.yml
+    command: ["--config=/etc/otel-collector.yml"]
+    depends_on:
+      - mimir
+    networks:
+      - monitoring
+
+  grafana:
+    image: docker.io/grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GOMAXPROCS=1
+    volumes:
+      - ./grafana.ini:/etc/grafana/grafana.ini
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    command:
+      - --config=/etc/grafana/grafana.ini
+    depends_on:
+      - mimir
+    networks:
+      - monitoring
+
+volumes:
+  mysql_data:
+  dynamodb_data:
+  mimir_data:
+  grafana_data:
+
+networks:
+  monitoring:
+    driver: bridge

@@ -69,7 +69,7 @@
       "id": 3,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Read Throughput",
       "type": "timeseries"
@@ -90,7 +90,7 @@
       "id": 4,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_write_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_write{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Write Throughput",
       "type": "timeseries"
@@ -113,7 +113,7 @@
       "id": 5,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_nop_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_read_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%read_nop", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_nop{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_read{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%read_nop", "refId": "A" }
       ],
       "title": "%Read Nop",
       "type": "timeseries"
@@ -134,7 +134,7 @@
       "id": 6,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_snapshot_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_snapshot{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Read Snapshot",
       "type": "timeseries"
@@ -155,7 +155,7 @@
       "id": 7,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_cond_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_read_cond{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Read Cond",
       "type": "timeseries"
@@ -176,7 +176,7 @@
       "id": 8,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_insert_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_insert{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Insert",
       "type": "timeseries"
@@ -197,7 +197,7 @@
       "id": 9,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_update_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_update{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Update",
       "type": "timeseries"
@@ -218,7 +218,7 @@
       "id": 10,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_delete_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_delete{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Delete",
       "type": "timeseries"
@@ -239,7 +239,7 @@
       "id": 11,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_upsert_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_upsert{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Upsert",
       "type": "timeseries"
@@ -262,7 +262,7 @@
       "id": 12,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_delete_nop_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_delete_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%delete_nop", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_delete_nop{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_delete{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%delete_nop", "refId": "A" }
       ],
       "title": "%Delete Nop",
       "type": "timeseries"
@@ -283,7 +283,7 @@
       "id": 13,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval]))", "legendFormat": "{{table_name}}", "refId": "A" }
       ],
       "title": "Scan Throughput",
       "type": "timeseries"
@@ -306,7 +306,7 @@
       "id": 14,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_index_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_index", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_index{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_index", "refId": "A" }
       ],
       "title": "%Scan Index",
       "type": "timeseries"
@@ -329,7 +329,7 @@
       "id": 15,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_filter_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_filter", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_filter{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_filter", "refId": "A" }
       ],
       "title": "%Scan Filter",
       "type": "timeseries"
@@ -352,7 +352,7 @@
       "id": 16,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_key_cond_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_key", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_key_cond{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_key", "refId": "A" }
       ],
       "title": "%Scan Key",
       "type": "timeseries"
@@ -375,7 +375,7 @@
       "id": 17,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_nop_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_nop", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_nop{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_nop", "refId": "A" }
       ],
       "title": "%Scan Nop",
       "type": "timeseries"
@@ -398,7 +398,7 @@
       "id": 18,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_page_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_page", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_page{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_page", "refId": "A" }
       ],
       "title": "%Scan Page",
       "type": "timeseries"
@@ -421,7 +421,7 @@
       "id": 19,
       "options": { "legend": { "calcs": [], "displayMode": "list", "placement": "bottom", "showLegend": true }, "tooltip": { "mode": "single", "sort": "none" } },
       "targets": [
-        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_count_total{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan_total{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_count", "refId": "A" }
+        { "datasource": { "type": "prometheus", "uid": "Mimir" }, "expr": "sum by (table_name) (rate(sql_scan_count{table_name=~\"$table_name\"}[$__rate_interval])) / sum by (table_name) (rate(sql_scan{table_name=~\"$table_name\"}[$__rate_interval])) * 100", "legendFormat": "%scan_count", "refId": "A" }
       ],
       "title": "%Scan Count",
       "type": "timeseries"
@@ -436,14 +436,14 @@
         "allValue": ".*",
         "current": { "selected": true, "text": ["All"], "value": ["$__all"] },
         "datasource": { "type": "prometheus", "uid": "Mimir" },
-        "definition": "label_values(req_table_total, table_name)",
+        "definition": "label_values(req_table, table_name)",
         "hide": 0,
         "includeAll": true,
         "label": "Table",
         "multi": true,
         "name": "table_name",
         "options": [],
-        "query": { "query": "label_values(req_table_total, table_name)", "refId": "StandardVariableQuery" },
+        "query": { "query": "label_values(req_table, table_name)", "refId": "StandardVariableQuery" },
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,

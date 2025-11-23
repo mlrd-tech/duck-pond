@@ -1,4 +1,4 @@
-FROM docker.io/library/mysql:8.0.34
+FROM docker.io/library/mysql:8.0.42
 
 # Switch to root user to install packages
 USER root

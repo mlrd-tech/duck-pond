@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mysql
-    container_name: mysql-8.0.34
+    container_name: mysql-8.0
     command:
     environment:
       - "MYSQL_ROOT_PASSWORD=test"

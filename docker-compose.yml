@@ -1,11 +1,9 @@
-name: "mlrd"
 services:
   mysql:
     build:
       context: .
       dockerfile: Dockerfile.mysql
-    container_name: mysql-8.0
-    command:
+    container_name: mysql-8.4
     environment:
       - "MYSQL_ROOT_PASSWORD=test"
     ports:

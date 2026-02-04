@@ -12,6 +12,7 @@ services:
       - mysql_data:/var/lib/mysql
       - ./mycfg/my.cnf:/etc/my.cnf
       - ./mycfg/fix-root-auth.sh:/opt/fix-root-auth.sh
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-uroot", "-ptest"]

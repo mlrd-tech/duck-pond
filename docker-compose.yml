@@ -10,7 +10,7 @@ services:
       - "33800:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./mycfg/my.cnf:/etc/my.cnf
+      - ./mycfg/my.cnf:/etc/mysql/my.cnf
       - ./mycfg/fix-root-auth.sh:/opt/fix-root-auth.sh
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
